@@ -22,7 +22,7 @@ export const loader: LoaderFunction = ({ request }) => {
 };
 
 export async function getStepzen(search: string){
-  console.log("process.env.STEPZEN_ENDPOINT server", process.env.STEPZEN_ENDPOINT);
+  console.log("process.env.STEPZEN_ENDPOINT server");
   let res = await fetch(`${process.env.STEPZEN_ENDPOINT}`, {
     method: "POST",
     headers: {
