@@ -15,7 +15,6 @@ export const meta: MetaFunction = () => {
 };
 
 export const loader: LoaderFunction = ({ request }) => {
-  console.log("server log");
   const url = new URL(request.url);
   const search = url.searchParams.get("search") ?? "Beatles Norwegian Wood";
   // console.log("search from loader", search);
@@ -23,6 +22,7 @@ export const loader: LoaderFunction = ({ request }) => {
 };
 
 export async function getStepzen(search: string){
+  console.log("process.env.STEPZEN_ENDPOINT server");
   let res = await fetch(`${process.env.STEPZEN_ENDPOINT}`, {
     method: "POST",
     headers: {
