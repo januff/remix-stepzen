@@ -27,7 +27,7 @@ export async function getStepzen(search: string){
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `${process.env.STEPZEN_API_KEY}`
+      "Authorization": "Apikey elfers::stepzen.net+1000::f7f4d91fc1cfa97b9080a47d31025c55ade23f9bc5d2866995d563c85f7358e5"
     },
     body: JSON.stringify({
       query: `
