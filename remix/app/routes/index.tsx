@@ -23,7 +23,7 @@ export const loader: LoaderFunction = ({ request }) => {
 
 export async function getStepzen(search: string){
   // console.log("process.env.STEPZEN_ENDPOINT server", process.env.STEPZEN_ENDPOINT);
-  let res = await fetch(`${process.env.STEPZEN_ENDPOINT}`, {
+  let res = await fetch("https://elfers.stepzen.net/api/stepzen-spotify-knowledge/__graphql", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
