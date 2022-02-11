@@ -22,7 +22,7 @@ export const loader: LoaderFunction = ({ request }) => {
 };
 
 export async function getStepzen(search: string){
-  // console.log("process.env.STEPZEN_ENDPOINT", process.env.STEPZEN_ENDPOINT);
+  // console.log("process.env.STEPZEN_ENDPOINT server", process.env.STEPZEN_ENDPOINT);
   let res = await fetch(`${process.env.STEPZEN_ENDPOINT}`, {
     method: "POST",
     headers: {
@@ -70,18 +70,19 @@ export async function getStepzen(search: string){
 }
 
 export default function Index() {
+  // console.log('process.env.STEPZEN_ENDPOINT client:', process.env.STEPZEN_ENDPOINT)
   const { spotify_Search_With_Token: song } = useLoaderData().data;
   // console.log('song from component', song)
-  const [search, setSearch] = useState(useSearchParams()[0].get("search") ?? "");
+  // const [search, setSearch] = useState(useSearchParams()[0].get("search") ?? "");
 
   return (
     <div className="remix-stepzen">
       <nav>
-      <img src="../../favicon.ico"/><h3>Remix, <img src="../../graphql.svg"/>GraphQL, and <img src="../../stepzen.svg"/>StepZen</h3>
+      {/* <img src="../../favicon.ico"/><h3>Remix, <img src="../../graphql.svg"/>GraphQL, and <img src="../../stepzen.svg"/>StepZen</h3> */}
       </nav>
       <Form method="get" className="search-form">
         <input
-          defaultValue={search}
+          // defaultValue={search}
           placeholder="Band & Song..."
           autoComplete="off"
           name="search"
