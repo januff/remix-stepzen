@@ -23,11 +23,11 @@ export const loader: LoaderFunction = ({ request }) => {
 
 export async function getStepzen(search: string){
   // console.log("process.env.STEPZEN_ENDPOINT server", process.env.STEPZEN_ENDPOINT);
-  let res = await fetch("https://elfers.stepzen.net/api/stepzen-spotify-knowledge/__graphql", {
+  let res = await fetch(`${process.env.STEPZEN_ENDPOINT}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": "Apikey elfers::stepzen.net+1000::f7f4d91fc1cfa97b9080a47d31025c55ade23f9bc5d2866995d563c85f7358e5"
+      "Authorization": `${process.env.STEPZEN_API_KEY}`
     },
     body: JSON.stringify({
       query: `
@@ -73,7 +73,7 @@ export default function Index() {
   // console.log('process.env.STEPZEN_ENDPOINT client:', process.env.STEPZEN_ENDPOINT)
   const { spotify_Search_With_Token: song } = useLoaderData().data;
   // console.log('song from component', song)
-  // const [search, setSearch] = useState(useSearchParams()[0].get("search") ?? "");
+  const [search, setSearch] = useState(useSearchParams()[0].get("search") ?? "");
 
   return (
     <div className="remix-stepzen">
@@ -82,7 +82,7 @@ export default function Index() {
       </nav>
       <Form method="get" className="search-form">
         <input
-          // defaultValue={search}
+          defaultValue={search}
           placeholder="Band & Song..."
           autoComplete="off"
           name="search"
