@@ -78,7 +78,7 @@ export default function Index() {
   return (
     <div className="remix-stepzen">
       <nav>
-      {/* <img src="../../favicon.ico"/><h3>Remix, <img src="../../graphql.svg"/>GraphQL, and <img src="../../stepzen.svg"/>StepZen</h3> */}
+      <img src="../../favicon.ico"/><h3>Remix, <img src="../../graphql.svg"/>GraphQL, and <img src="../../stepzen.svg"/>StepZen</h3>
       </nav>
       <Form method="get" className="search-form">
         <input
