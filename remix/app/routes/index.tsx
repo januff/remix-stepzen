@@ -30,16 +30,11 @@ export async function getStepzen(search: string){
     body: JSON.stringify({
       query: `
         query MyQuery($query: String!) {
-          spotify_Search_With_Token_And_Query(q: $query) {
+          spotify_Search_Sequence(q: $query) {
             id
+            artist
+            track
             album
-            albumInfo {
-              name
-              description
-              detailedDescription {
-                articleBody
-              }
-            }
             artistInfo {
               description
               name
@@ -47,7 +42,6 @@ export async function getStepzen(search: string){
                 articleBody
               }
             }
-            track
             trackInfo {
               description
               detailedDescription {
@@ -55,7 +49,13 @@ export async function getStepzen(search: string){
               }
               name
             }
-            artist
+            albumInfo {
+              name
+              description
+              detailedDescription {
+                articleBody
+              }
+            }
           }
         }`,
       variables: {
@@ -68,7 +68,7 @@ export async function getStepzen(search: string){
 }
 
 export default function Index() {
-  const { spotify_Search_With_Token_And_Query: song } = useLoaderData().data;
+  const { spotify_Search_Sequence: song } = useLoaderData().data;
   console.log('song from component', song)
   const [search, setSearch] = useState(useSearchParams()[0].get("search") ?? "");
 
