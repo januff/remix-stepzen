@@ -17,12 +17,10 @@ export const meta: MetaFunction = () => {
 export const loader: LoaderFunction = ({ request }) => {
   const url = new URL(request.url);
   const search = url.searchParams.get("search") ?? "Beatles Norwegian Wood";
-  // console.log("search from loader", search);
   return getStepzen(search);
 };
 
 export async function getStepzen(search: string){
-  console.log("process.env.STEPZEN_ENDPOINT server");
   let res = await fetch(`${process.env.STEPZEN_ENDPOINT}`, {
     method: "POST",
     headers: {
@@ -32,7 +30,7 @@ export async function getStepzen(search: string){
     body: JSON.stringify({
       query: `
         query MyQuery($query: String!) {
-          spotify_Search_With_Token(q: $query) {
+          spotify_Search_With_Token_And_Query(q: $query) {
             id
             album
             albumInfo {
@@ -70,9 +68,8 @@ export async function getStepzen(search: string){
 }
 
 export default function Index() {
-  // console.log('process.env.STEPZEN_ENDPOINT client:', process.env.STEPZEN_ENDPOINT)
   const { spotify_Search_With_Token: song } = useLoaderData().data;
-  // console.log('song from component', song)
+  console.log('song from component', song)
   const [search, setSearch] = useState(useSearchParams()[0].get("search") ?? "");
 
   return (
