@@ -40,7 +40,7 @@ export async function getStepzen(search: string){
                 articleBody
               }
             }
-            artistsInfo {
+            artistInfo {
               description
               name
               detailedDescription {
@@ -55,7 +55,7 @@ export async function getStepzen(search: string){
               }
               name
             }
-            artists
+            artist
           }
         }`,
       variables: {
@@ -63,12 +63,12 @@ export async function getStepzen(search: string){
       },
     }),
   })
-  // console.log("res", res)
+  console.log("res", res)
   return res.json();
 }
 
 export default function Index() {
-  const { spotify_Search_With_Token: song } = useLoaderData().data;
+  const { spotify_Search_With_Token_And_Query: song } = useLoaderData().data;
   console.log('song from component', song)
   const [search, setSearch] = useState(useSearchParams()[0].get("search") ?? "");
 
@@ -94,8 +94,8 @@ export default function Index() {
           <div className="song-info">
             <h4>{song.track}</h4>
             <h5>{song.trackInfo[0]?.detailedDescription?.articleBody || song.trackInfo[0]?.description || "no data"}</h5>
-            <h4>{song.artists}</h4>
-            <h5>{song.artistsInfo[0]?.detailedDescription?.articleBody || song.artistsInfo[0]?.description || "no data"}</h5>
+            <h4>{song.artist}</h4>
+            <h5>{song.artistInfo[0]?.detailedDescription?.articleBody || song.artistInfo[0]?.description || "no data"}</h5>
             <h4>{song.album}</h4>
             <h5>{song.albumInfo[0]?.detailedDescription?.articleBody || song.albumInfo[0]?.description || "no data"}</h5>
           </div>
